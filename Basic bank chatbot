@@ -1,0 +1,36 @@
+# Basic bank Chatbot Example
+
+```python
+import tensorflow as tf
+from tensorflow.keras import layers, models, preprocessing
+
+# Simple chatbot responses
+responses = {
+    "accounts": "We offer Farm business savings accounts, Personal savings accounts, Business savings accounts, and New Generation accounts.",
+    "savings accounts": "You can choose from Easy access accounts, Notice accounts, and Fixed bond accounts."
+}
+
+# Basic function to match user input
+def chatbot_response(user_input):
+    user_input = user_input.lower()
+    
+    if "savings" in user_input and "accounts" in user_input:
+        return responses.get("savings accounts", "Sorry, I don't understand that.")
+    elif "accounts" in user_input:
+        return responses.get("accounts", "Sorry, I don't understand that.")
+    else:
+        return "Sorry, I don't understand. Please ask about accounts or savings."
+
+# Simulate a simple chat loop
+def chat():
+    print("Welcome to Bank X savings chatbot. How can I help you?")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == "quit":
+            print("Chatbot: Goodbye!")
+            break
+        response = chatbot_response(user_input)
+        print(f"Chatbot: {response}")
+
+# Run the chat
+chat()
